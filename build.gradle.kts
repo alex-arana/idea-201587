@@ -14,7 +14,6 @@ plugins {
     // Spring Boot
     id("org.springframework.boot") version "2.1.0.RELEASE"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
-    id("com.github.ben-manes.versions") version "0.20.0"
 }
 
 repositories {
@@ -38,7 +37,7 @@ tasks {
     }
 
     withType(Wrapper::class.java) {
-        this.gradleVersion = "4.10.2"
+        gradleVersion = "4.10.2"
         distributionType = DistributionType.ALL
     }
 }
