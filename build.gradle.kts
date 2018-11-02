@@ -5,7 +5,6 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 plugins {
     idea
 
-    // TODO externalise this somehow..
     val kotlinVersion = "1.3.0"
     kotlin("jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
