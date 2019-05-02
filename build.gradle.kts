@@ -1,18 +1,18 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
-import org.springframework.boot.gradle.tasks.bundling.BootJar
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     idea
 
-    val kotlinVersion = "1.3.0"
+    val kotlinVersion = "1.3.31"
     kotlin("jvm") version kotlinVersion
+    kotlin("kapt") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
 
     // Spring Boot
-    id("org.springframework.boot") version "2.1.0.RELEASE"
-    id("io.spring.dependency-management") version "1.0.6.RELEASE"
+    id("org.springframework.boot") version "2.1.4.RELEASE"
+    id("io.spring.dependency-management") version "1.0.7.RELEASE"
 }
 
 repositories {
@@ -20,11 +20,11 @@ repositories {
 }
 
 tasks {
-    val bootJar by existing(BootJar::class) {
-        classifier = "boot"
+    bootJar {
+        archiveClassifier.set("boot")
     }
 
-    val jar by getting(Jar::class) {
+    jar {
         enabled = true
     }
 
@@ -36,7 +36,7 @@ tasks {
     }
 
     withType(Wrapper::class.java) {
-        gradleVersion = "4.10.2"
+        gradleVersion = "5.4.1"
         distributionType = DistributionType.ALL
     }
 }
@@ -46,7 +46,7 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-reflect")
     compile("org.springframework.boot:spring-boot-starter")
 
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 springBoot {
